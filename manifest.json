@@ -1,5 +1,5 @@
 {
-  "background_color": "#ffffff",
+  "background_color": "none",
   "description": "my first pwa",
   "dir": "auto",
   "display": "standalone",
@@ -8,7 +8,7 @@
   "scope": "/",
   "short_name": "시간의 법칙",
   "start_url": "https://kyungwooseoul.github.io/pwatest/",
-  "theme_color": "#ffffff",
+  "theme_color": "none",
   "categories": [],
   "screenshots": [],
   "icons": [
