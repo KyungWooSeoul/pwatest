@@ -1,0 +1,15 @@
+{
+  "background_color": "#ffffff",
+  "description": "My first PWA Test",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "FirstPWATest",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "PWATest",
+  "start_url": "https://kyungwooseoul.github.io/pwatest/",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "shortcuts": []
+}
