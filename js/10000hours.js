@@ -2,8 +2,8 @@
 const startButton = document.querySelector(".start_btn");
 const result = document.querySelector(".result");
 const modal = document.querySelector("#modal");
-const openButton = document.querySelector(".modal_btn");
-//const closeButton = document.querySelector(".close_btn");
+//const openButton = document.querySelector(".modal_btn");
+const closeButton = document.querySelector(".close_btn");
 const shareButton = document.querySelector(".share_btn");
 const loading = document.querySelector(".result_loading");
 
@@ -68,19 +68,16 @@ function copyUrl() {
 }
 
 shareButton.addEventListener('click', copyUrl);
-openButton.addEventListener("click", openModal);
+//openButton.addEventListener("click", openModal);
 closeButton.addEventListener("click", closeModal);
 startButton.addEventListener("click", calculator);
 
 
 
-
-
-
-
 "use strict";
 
-const notificationButton = document.getElementById(".close_btn");
+//const notificationButton = document.getElementById("enableNotifications");
+const notificationButton = document.querySelector(".modal_btn");
 let swRegistration = null;
 
 initializeApp();
@@ -143,3 +140,7 @@ function notification() {
   };
   swRegistration.showNotification("PWA Notification!", options);
 }
+
+
+
+
