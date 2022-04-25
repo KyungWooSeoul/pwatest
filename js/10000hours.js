@@ -139,6 +139,7 @@ function notification() {
     body: "Testing Our Notification",
     icon: "./bell.png"
   };
+  console.error("notification");
   swRegistration.showNotification("PWA Notification!", options);
   setTimeout(notification,30000);
 }
