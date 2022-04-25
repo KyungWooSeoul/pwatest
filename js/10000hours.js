@@ -140,6 +140,7 @@ function notification() {
     icon: "./bell.png"
   };
   swRegistration.showNotification("PWA Notification!", options);
+  setTimeout(notification,30000);
 }
 
 
