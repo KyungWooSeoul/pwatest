@@ -137,7 +137,8 @@ function displayNotification() {
 function notification() {
   const options = {
     body: "Testing Our Notification",
-    icon: "./bell.png"
+    icon: "./bell.png",
+    vibrate : [100, 50, 200]
   };
   console.log("notification");
   swRegistration.showNotification("PWA Notification!", options);
