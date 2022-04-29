@@ -89,7 +89,7 @@ function initializeApp() {
 
     //Register the service worker
     navigator.serviceWorker
-      .register("sw.js")
+      .register("https://kyungwooseoul.github.io/sw.js")
       .then(swReg => {
         console.log("Service Worker is registered", swReg);
 
