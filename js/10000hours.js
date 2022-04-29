@@ -141,19 +141,7 @@ function notification() {
   };
   swRegistration.showNotification("PWA Notification!", options);
 
-  fetch('https://jsonplaceholder.typicode.com/posts', {
-  method: 'POST',
-    headers: {
-    'Content-type': 'application/json'
-  },
-  body: JSON.stringify({
-    title: 'foo',
-    body: 'bar',
-    userId: 1,
-  })  
-})
-  .then(res => res.json())
-.then(data => console.log(data))
+
 }
 
 
