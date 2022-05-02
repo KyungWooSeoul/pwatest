@@ -2,7 +2,7 @@
 const startButton = document.querySelector(".start_btn");
 const result = document.querySelector(".result");
 const modal = document.querySelector("#modal");
-const openButton = document.querySelector(".modal_btn");
+//const openButton = document.querySelector(".modal_btn");
 const closeButton = document.querySelector(".close_btn");
 const shareButton = document.querySelector(".share_btn");
 const loading = document.querySelector(".result_loading");
@@ -14,6 +14,7 @@ function calculator() {
 
     const fieldResult = document.querySelector(".field_result");
     const timeResult = document.querySelector(".time_result");
+
 
     if(fieldValue.value == "") {
         alert('입력되지 않았습니다.');
@@ -68,6 +69,79 @@ function copyUrl() {
 }
 
 shareButton.addEventListener('click', copyUrl);
-openButton.addEventListener("click", openModal);
+//openButton.addEventListener("click", openModal);
 closeButton.addEventListener("click", closeModal);
 startButton.addEventListener("click", calculator);
+
+
+
+"use strict";
+
+//const notificationButton = document.getElementById("enableNotifications");
+const notificationButton = document.querySelector(".modal_btn");
+let swRegistration = null;
+
+initializeApp();
+
+function initializeApp() {
+  if ("serviceWorker" in navigator && "PushManager" in window) {
+    console.log("Service Worker and Push is supported");
+
+    //Register the service worker
+    navigator.serviceWorker
+      .register("sw.js")
+      .then(swReg => {
+        console.log("Service Worker is registered", swReg);
+
+        swRegistration = swReg;
+        initializeUi();
+      })
+      .catch(error => {
+        console.error("Service Worker Error", error);
+      });
+  } else {
+    console.warn("Push messaging is not supported");
+    notificationButton.textContent = "Push Not Supported";
+  }
+}
+
+function initializeUi() {
+  notificationButton.addEventListener("click", () => {
+    displayNotification();
+  });
+}
+
+function displayNotification() {
+  if (window.Notification && Notification.permission === "granted") {
+    notification();
+  }
+  // If the user hasn't told if he wants to be notified or not
+  // Note: because of Chrome, we are not sure the permission property
+  // is set, therefore it's unsafe to check for the "default" value.
+  else if (window.Notification && Notification.permission !== "denied") {
+    Notification.requestPermission(status => {
+      if (status === "granted") {
+        notification();
+      } else {
+        alert("You denied or dismissed permissions to notifications.");
+      }
+    });
+  } else {
+    // If the user refuses to get notified
+    alert(
+      "You denied permissions to notifications. Please go to your browser or phone setting to allow notifications."
+    );
+  }
+}
+
+function notification() {
+  const options = {
+    body: "Testing Our Notification",
+    icon: "./bell.png"
+  };
+  swRegistration.showNotification("PWA Notification!", options);
+}
+
+
+
+
