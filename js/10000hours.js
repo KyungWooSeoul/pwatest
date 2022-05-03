@@ -68,7 +68,7 @@ function copyUrl() {
 	alert("URL이 복사되었습니다"); 
 
   $.ajax({
-    url:'',
+    url:'http://httpbin.org/post',
     type:'POST',
     dataType: 'json',
     success: function(data){
