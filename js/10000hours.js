@@ -66,6 +66,15 @@ function copyUrl() {
     document.body.removeChild(tmp);
     
 	alert("URL이 복사되었습니다"); 
+
+  $.ajax({
+    url:'',
+    type:'POST',
+    dataType: 'json',
+    success: function(data){
+      console.log(data)
+    }
+  });
 }
 
 shareButton.addEventListener('click', copyUrl);
@@ -89,7 +98,7 @@ function initializeApp() {
 
     //Register the service worker
     navigator.serviceWorker
-      .register("pwabuilder-sw.js")
+      .register("sw.js")
       .then(swReg => {
         console.log("Service Worker is registered", swReg);
 
