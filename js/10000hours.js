@@ -68,7 +68,7 @@ function copyUrl() {
 	alert("URL이 복사되었습니다"); 
 
   $.ajax({
-    url:'https://jsonplaceholder.typicode.com/',
+    url:'https://jsonplaceholder.typicode.com/post',
     type:'POST',
     dataType: 'json',
     success: function(data){
