@@ -68,11 +68,14 @@ function copyUrl() {
 	alert("URL이 복사되었습니다"); 
 
   $.ajax({
-    url:'https://jsonplaceholder.typicode.com/post',
+    url:'https://jsonplaceholder.typicode.com/todos/1',
     type:'POST',
     dataType: 'json',
+    error: function(error){
+      console.log(error);
+    },
     success: function(data){
-      console.log(data)
+      console.log(data.json());
     }
   });
 }
@@ -98,7 +101,7 @@ function initializeApp() {
 
     //Register the service worker
     navigator.serviceWorker
-      .register("sw.js")
+      .register("pwabuilder-sw.js")
       .then(swReg => {
         console.log("Service Worker is registered", swReg);
 
@@ -119,6 +122,8 @@ function initializeUi() {
     displayNotification();
   });
 }
+
+
 
 function displayNotification() {
   if (window.Notification && Notification.permission === "granted") {
@@ -149,6 +154,35 @@ function notification() {
     icon: "./bell.png"
   };
   swRegistration.showNotification("PWA Notification!", options);
+}
+
+
+
+function webpush() {
+  Notification.requestPermission().then((status) => {
+    console.log('Notification 상태', status);
+  
+    if (status === 'denied') {
+      alert('Notification 거부됨');
+    } else if (navigator.serviceWorker) {
+      navigator.serviceWorker
+        .register('pwabuilder-sw.js') // serviceworker 등록
+        .then(function (registration) {
+          const subscribeOptions = {
+            userVisibleOnly: true,
+            // push subscription이 유저에게 항상 보이는지 여부. 알림을 숨기는 등 작업이 들어가지는에 대한 여부인데, 크롬에서는 true 밖에 지원안한다.
+            // https://developers.google.com/web/fundamentals/push-notifications/subscribing-a-user
+            applicationServerKey: 'BPlQStBNhnosrV7oXiVk3uAndJCOMLjCC0sh2J1_T1-KEpbWW9lTh10gQcOeFVkzERW-UddrnO2BqNbFzkDXudY', // 발급받은 vapid public key
+          };
+  
+          return registration.pushManager.subscribe(subscribeOptions);
+        })
+        .then(function (pushSubscription) {
+          // subscription 정보를 저장할 서버로 보낸다.
+          postSubscription(pushSubscription);
+        });
+    }
+  });
 }
 
 
