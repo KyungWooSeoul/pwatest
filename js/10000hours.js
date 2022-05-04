@@ -75,7 +75,7 @@ function copyUrl() {
       console.log(error);
     },
     success: function(data){
-      console.log(data);
+      console.log(JSON.stringify(data));
     }
   });
 }
